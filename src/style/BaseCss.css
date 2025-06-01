@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+.playfair-display-uniquifier {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+.markazi-text-uniquifier {
+    font-family: "Markazi Text", serif;
+    font-optical-sizing: auto;
+    /* font-weight: weight; */
+    font-size: 22px;
+    /* color: gray; */
+}
+.text_color_gray{
+    color: gray;
+}
+.color-gray{
+    color: gray;
+}
+.font-30px{
+    font-size: 30px;
+}
+.font-16px{
+    font-size: 16px;
+}
+.marginTop-60px{
+    margin-top: 60px;
+}
+.marginTop-30px{
+    margin-top: 30px;
+}
+.marginLeft-110px{
+    margin-left: 110px;
+}
+.marginBottom-30px{
+    margin-bottom: 30px;
+}
+
+.height-100px{
+    height: 400px;
+    object-fit: cover;
+}
+.width-100vw{
+    width: 100vw;
+    object-fit: cover;
+}
+.ant-menu-title-content {
+    color: #696969 !important;  
+}
+
+
+/*icon header */
+.custom-icon {
+  display: inline-block;       
+  padding: 8px;
+  background-color: #9090d7;  
+  border: 1px solid #ccc;     
+  border-radius: 100%;          
+  /* margin-left: 50px;         */
+}
+.custom-search input {
+  height: 32px !important;
+  /* line-height: 40px !important;
+  padding: 0 12px !important;
+  font-size: 16px; */
+}
+
+
+

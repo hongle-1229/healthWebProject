@@ -1,0 +1,3 @@
+lấy danh mục sản phẩm: /api/products/type
+lấy toàn bộ sản phẩm: http://localhost:5000/api/products/all 
+ 

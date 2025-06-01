@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&family=Maven+Pro:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+.playfair-display-uniquifier {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight:weight;
+    font-style: normal;
+}
+.markazi-text-uniquifier {
+    font-family: "Markazi Text", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-size: 50px;
+  }
+  .maven-pro-uniquifier {
+    font-family: "Maven Pro", sans-serif;
+    font-optical-sizing: auto;
+    /* font-weight: weight; */
+    font-size: 30px;
+  }
+  .div-1{
+    text-align: center;
+    margin-top: 80px;
+    /* margin-bottom: 50px; */
+    margin-left: 60px;
+}
+.div-bottom{
+    display: flex;
+    text-align: center;
+    margin-left: 160px;
+    margin-bottom: 150px;
+}
+.title{
+    font-size: 18px;
+    font-weight: bold;
+}
+p{
+    color: rgb(81, 79, 79);
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+}
+
+
+/* product */
+.product-card {
+    position: relative;
+    margin-top: 50px;
+    width: 350px;
+    margin-left: 30px;
+  }
+  
+  .discount-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    /* border-radius: 5px; */
+    z-index: 10;
+  }
+  
+  .product-container {
+    text-align: center;
+    /* border-radius: 10px; */
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    /* border: 1px solid #ddd; */
+    border: none;
+    padding-bottom: 12px;
+  }
+  
+  .product-container:hover {
+    transform: scale(1.03);
+  }
+  
+  .product-image {
+    padding: 15px;
+    height: 240px;
+    object-fit: contain;
+  }
+  
+  .product-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 4px;
+  }
+  
+  .product-rating {
+    color: gold;
+    margin-bottom: 4px;
+  }
+  
+  .product-sold {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .button-container{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 8x;
+  }
+  .cart-icon{
+    font-size: 22px;
+    color: rgb(45, 63, 89);
+    cursor: pointer;
+    padding-right: 10px;
+  }
+  .buy-button {
+    background-color: rgb(45, 63, 89);
+    font-weight: bold;
+    border-radius: 0;
+    color: white;
+    padding-bottom: 2px;
+    font-size: 14px;
+    flex: 1;
+  }
+  .buy-button:hover{
+    background-color: #457b9d;
+  }

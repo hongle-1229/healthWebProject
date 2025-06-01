@@ -1,0 +1,47 @@
+.stat-section {
+    background-color: #addbe1;
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 50px;
+}
+
+.stat-title {
+    color: rgb(75, 75, 75);
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.counter-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Giúp tự xuống dòng trên màn hình nhỏ */
+}
+
+.counter {
+    background: white;
+    padding: 20px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    min-width: 250px;
+}
+
+.counter:hover {
+    transform: translateY(-5px);
+}
+
+.counter-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+}
+
+.counter-number + p {
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: #555;
+}

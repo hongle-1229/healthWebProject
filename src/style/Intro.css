@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&family=Maven+Pro:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+.playfair-display-uniquifier {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight:weight;
+    font-style: normal;
+}
+.markazi-text-uniquifier {
+    font-family: "Markazi Text", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-size: 50px;
+  }
+  .maven-pro-uniquifier {
+    font-family: "Maven Pro", sans-serif;
+    font-optical-sizing: auto;
+    /* font-weight: weight; */
+    font-size: 30px;
+  }
+.all-bg{
+    background-color: rgb(225, 244, 251);
+    height: 100%;
+    width: 100%;
+    /* margin-top: 1px; */
+}
+.bg-intro-1{
+    padding-top: 50px;
+    padding-left: 160px;
+    position: absolute;
+}
+.bg-intro-2{
+    display: flex;
+    height: 730px;
+    position: relative;
+    margin-left: 160px;
+}
+.left{
+    padding-top: 220px;
+}
+
+.right{
+    padding-top: 80px;
+    padding-left: 50px;
+}
+h2{
+    font-weight: bold;
+    color: rgb(23, 65, 79);
+}
+p{
+    color: rgb(81, 79, 79);
+}
+button{
+    background-color: rgb(23, 65, 79);
+    color: white;
+    border: none;
+    height: 45px;
+    width: 140px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: rgb(52, 107, 126);
+    transform: scale(1.05);
+}
