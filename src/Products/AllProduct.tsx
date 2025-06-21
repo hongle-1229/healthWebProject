@@ -1,12 +1,15 @@
-import IntroProduct from "./IntroProduct"
+import { useRef } from "react";
+import Banner from "./Banner";
+// import IntroProduct from "./IntroProduct"
 import ProductHome from "./ProductHome";
 
 
 const AllProduct = () => {
+    const listRef = useRef<HTMLDivElement | null>(null);
     return (
         <div>
-            <IntroProduct></IntroProduct>
-            <ProductHome></ProductHome>
+            <Banner listRef={listRef}></Banner>
+            <ProductHome ref={listRef}></ProductHome>
         </div>
     );
 };

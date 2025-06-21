@@ -1,7 +1,9 @@
 import "../style/Intro.css"
 import 'animate.css'
 import {ArrowRightOutlined} from '@ant-design/icons'
+import { useNavigate } from "react-router-dom"
 const Intro = () => {
+    const navigate = useNavigate();
     return (
         <div className="all-bg">
             <div className="bg-intro-1">
@@ -11,7 +13,7 @@ const Intro = () => {
                 <div className="left animate__animated animate__fadeInLeft">
                     <h2 style={{fontWeight:"bold"}} className="maven-pro-uniquifier">Get Your Minerals & <br /> Vitamins</h2>
                     <p className="maven-pro-uniquifier" style={{fontSize: "16px"}}>Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit. Ut elit tellus, luctus nec ullamcorper mattis, <br /> pulvinar dapibus leo.</p>
-                    <button className="maven-pro-uniquifier" style={{color: "white", fontSize: "16px", fontWeight: "bold"}}>Explore <ArrowRightOutlined style={{paddingLeft: "7px"}} /></button>
+                    <button className="maven-pro-uniquifier" style={{color: "white", fontSize: "16px", fontWeight: "bold"}} onClick={()=> navigate("/products")}>Khám phá <ArrowRightOutlined style={{paddingLeft: "7px"}} /></button>
                 </div>
                 <div className="right animate__animated animate__zoomIn">
                     <img src="https://lh3.googleusercontent.com/FjKbo8_FYoyNsnX75LAtTuoc-ZdYxrspOQJO2I-zsEwbQc3DL0T235Eli31fhT09WY77dBUniVBbW-XYaM3hO5HXLrs_FZyDGw=rw-w742" alt="" style={{height: "450px", width: "380px"}} />

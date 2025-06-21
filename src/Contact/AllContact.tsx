@@ -37,10 +37,10 @@ const AllContact: React.FC = () => {
       <div style={{marginLeft: "230px", marginTop: "50px"}}>
       <h1 style={{color:"rgb(23, 65, 79)"}}>Liên hệ với chúng tôi</h1>
       <p style={{color: "#353535"}}>
-        <b style={{color:"rgb(23, 65, 79)"}}>Địa chỉ</b>: 113 - Quán Thánh - Ba Đình - Hà Nội <br />
-        <b style={{color:"rgb(23, 65, 79)"}}>Số điện thoại</b>: 084 872 8888 <br />
-        <b style={{color:"rgb(23, 65, 79)"}}>Email</b>: ankyo113cquanthanh@gmail.com <br />
-        <b style={{color:"rgb(23, 65, 79)"}}>Giờ làm việc</b>: Thứ Hai - Chủ Nhật, 9:00 AM - 21:00 PM
+        <b style={{color:"rgb(23, 65, 79)"}}>Địa chỉ</b>: Số 8 - Ngõ 12 - Lê Trọng Tấn - Hà Đông - Hà Nội <br />
+        <b style={{color:"rgb(23, 65, 79)"}}>Số điện thoại</b>: 036 538 5143 <br />
+        <b style={{color:"rgb(23, 65, 79)"}}>Email</b>: hongle1229@gmail.com <br />
+        <b style={{color:"rgb(23, 65, 79)"}}>Giờ làm việc</b>: Thứ Hai - Thứ bảy, 9:00 AM - 18:00 PM
       </p>
       <i>
         <p>Chúng tôi rất vui khi nhận được phản hồi từ bạn. Nếu bạn có bất kì ý kiến nào hãy liên hệ với chúng tôi qua các kênh sau đây:</p>

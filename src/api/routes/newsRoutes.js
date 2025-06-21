@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
     try {
         const pool = await poolPromise;
         const result = await pool.request()
-            .query("SELECT NewsTitle, ImageNews, NewsDescription, SourceNews, PublishAt FROM news");
+            .query("SELECT NewsID, NewsTitle, ImageNews, NewsDescription, SourceNews, PublishAt FROM news");
         res.json(result.recordset);
     } catch (err) {
         res.status(500).json({error: err.message});

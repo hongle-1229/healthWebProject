@@ -1,5 +1,6 @@
 import React from 'react';
 import '../style/BaseCss.css';
+import vietmed from '../assets/image/vietmed.png';
 // import { Footer } from "antd/es/layout/layout";
 import {
     FacebookFilled, 
@@ -45,7 +46,7 @@ const Footerr = () => {
     return (
         <div style={{display:"flex", backgroundColor:"#17414F", color: "white"}}>
             <div className="block-1 marginLeft-110px marginTop-30px">
-                <img src="src/assets/image/vietmed.png" alt="" style={{height:"100px", objectFit: "cover", marginBottom: "20px"}}/>
+                <img src={vietmed} alt="" style={{height:"100px", objectFit: "cover", marginBottom: "20px"}}/>
                 <p style={{color: "white"}}>
                 Sức khỏe của bạn là ưu tiên hàng đầu <br /> của chúng tôi. Chúng tôi luôn đồng hành cùng bạn, <br /> giúp bạn dễ dàng tra cứu thông tin sơ cứu, <br /> thực phẩm chức năng và kiến thức y tế cần thiết.
                 </p>

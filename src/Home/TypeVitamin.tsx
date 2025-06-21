@@ -3,44 +3,45 @@ import { Card, Row, Col, Typography } from 'antd';
 const { Title, Text, Link } = Typography;
 
 const products = [
-    {
-        id: 1,
-    title: 'Type of Vitamins',
+  {
+    id: 1,
+    title: 'Các loại vitamin thiết yếu',
     description:
-      'Explore essential nutrients for your health and well-being. Learn about each type in detail.',
+      'Tìm hiểu về các loại vitamin quan trọng cho sức khỏe và cách bổ sung phù hợp.',
     isIntro: true,
-    },
-    {
-        id: 2,
-      title: 'Vitamin C',
-      description: 'Vitamin C as ascorbic acid',
-      image: 'https://lh3.googleusercontent.com/dXhK2mBr4IEB6g58NOhpCa2fBivBv2W35VT4W1nyqwL3lJpAvwGy2bx_7kppghkoPgcQPODTly0QIkQeM7zPCusBkoZHK4AG=w410',
-    },
-    {
-        id: 3,
-      title: 'Magnesium',
-      description: 'Vitamin C as ascorbic acid',
-      image: 'https://lh3.googleusercontent.com/wClc5YJYCsil-i4jF0gHyYpq1V8B51xL3rIGt84SYYB99naipB-BnaEJj6m_xRcB8Tb3ZRiTDujyTc8y-Q1gDKOSNirkM5W_=w200',
-    },
-    {
-        id: 4,
-        title: 'Vitamin D',
-        description: 'hdjsgdhgdf',
-        image: 'https://lh3.googleusercontent.com/98u9BYwZoGz7ei2aT1qHLLzssqiXTCuTvUQGe6pCSf9aZgHEUiIb1KfG0XUSLLg7oNcMG_OQhwOdMWine8IAVPxsIVTbQgs=w410',
-    },
-    {
-        id: 5,
-        title: 'Vitamin D',
-        description: 'hdjsgdhgdf',
-        image: 'https://lh3.googleusercontent.com/EwDQ6eHkIqaxTjOuIoHgHddDq56RVcj9crADo14zrV1E6slArCcQSz_ifJZd7p9T3vSEDwdbuaMemqpJ-DQfT1x9iRRi4JD6Uw=w410',
-    },
-    {
-        id: 6,
-        title: 'Vitamin D',
-        description: 'hdjsgdhgdf',
-        image: 'https://lh3.googleusercontent.com/w7Oi9eauoBkS8WQxZQueBzsJgtoRLrP_aPn0sNhhgUUiRp0fZh4nkyg5HDV8yfE6r3QbH3EdR2XXRvdSvm4l9Ynvfv9s8g3q=w410',
-    },
-  ];
+  },
+  {
+    id: 2,
+    title: 'Vitamin C',
+    description: 'Vitamin C giúp tăng cường hệ miễn dịch và chống oxy hóa.',
+    image: 'https://lh3.googleusercontent.com/dXhK2mBr4IEB6g58NOhpCa2fBivBv2W35VT4W1nyqwL3lJpAvwGy2bx_7kppghkoPgcQPODTly0QIkQeM7zPCusBkoZHK4AG=w410',
+  },
+  {
+    id: 3,
+    title: 'Magnesium',
+    description: 'Magnesium hỗ trợ chức năng cơ bắp và hệ thần kinh.',
+    image: 'https://lh3.googleusercontent.com/wClc5YJYCsil-i4jF0gHyYpq1V8B51xL3rIGt84SYYB99naipB-BnaEJj6m_xRcB8Tb3ZRiTDujyTc8y-Q1gDKOSNirkM5W_=w200',
+  },
+  {
+    id: 4,
+    title: 'Vitamin D',
+    description: 'Vitamin D giúp hấp thu canxi, duy trì xương chắc khỏe.',
+    image: 'https://lh3.googleusercontent.com/98u9BYwZoGz7ei2aT1qHLLzssqiXTCuTvUQGe6pCSf9aZgHEUiIb1KfG0XUSLLg7oNcMG_OQhwOdMWine8IAVPxsIVTbQgs=w410',
+  },
+  {
+    id: 5,
+    title: 'Vitamin B12',
+    description: 'Vitamin B12 hỗ trợ sản xuất tế bào máu và chức năng thần kinh.',
+    image: 'https://lh3.googleusercontent.com/EwDQ6eHkIqaxTjOuIoHgHddDq56RVcj9crADo14zrV1E6slArCcQSz_ifJZd7p9T3vSEDwdbuaMemqpJ-DQfT1x9iRRi4JD6Uw=w410',
+  },
+  {
+    id: 6,
+    title: 'Omega-3',
+    description: 'Omega-3 giúp cải thiện sức khỏe tim mạch và trí não.',
+    image: 'https://lh3.googleusercontent.com/w7Oi9eauoBkS8WQxZQueBzsJgtoRLrP_aPn0sNhhgUUiRp0fZh4nkyg5HDV8yfE6r3QbH3EdR2XXRvdSvm4l9Ynvfv9s8g3q=w410',
+  },
+];
+
 
 const TypeVitamin = () => {
     return (

@@ -34,20 +34,20 @@ const ContentHome = () => {
         <div className='all-content'>
             <div className="div-1 animate__animated animate__slideInUp">
                 <img style={{ height: "30px" }} src="https://storage.googleapis.com/teko-gae.appspot.com/media/image/2023/10/31/31314c12-1c71-45aa-91dd-4a92df10ecdf/Group-8042-1.svg" alt="" />
-                <h2 className='maven-pro-uniquifier' style={{ marginTop: "10px", color: "rgb(65, 186, 227)", fontSize: "22px" }}>Welcome to VietMed</h2>
-                <h1 className='maven-pro-uniquifier' style={{ color: "rgb(23, 65, 79)", fontWeight: "bold", fontSize: "50px" }}>Our Best Vitamins</h1>
+                <h2 className='maven-pro-uniquifier' style={{ marginTop: "10px", color: "rgb(65, 186, 227)", fontSize: "22px" }}>Chào mừng đến VietMed</h2>
+                <h1 className='maven-pro-uniquifier' style={{ color: "rgb(23, 65, 79)", fontWeight: "bold", fontSize: "50px" }}>Các loại vitamin tốt nhất</h1>
             </div>
             <div className="div-bottom">
                 <div className="div-2-3 animate__animated animate__slideInLeft">
                     <div className="div-2" style={{ marginBottom: "100px" }}>
                         <img src="https://lh3.googleusercontent.com/6OM9x4mtPbplX2KyBXqF0qhS8ZmKgZ73v2gpik4Am8dfzXtLV10bc4zjGr63mSFhaU5HN4XXpAwdEI_g86G2LVQXLWNCNqRd=rw-w120" alt="" />
-                        <h2 className='title maven-pro-uniquifier'> GOOD FOR THE HEART </h2>
-                        <p>Lorem ipsum dolor sit amet, <br /> consectetur adipiscing elit. Ut elit <br /> tellus, luctus nec ullamcorper mattis, </p>
+                        <h2 className='title maven-pro-uniquifier'> Tốt cho tim mạch </h2>
+                        <p>Thực phẩm chức năng giúp bảo vệ và tăng <br />cường sức khỏe tim mạch.</p>
                     </div>
                     <div className="div-3">
                         <img src="https://lh3.googleusercontent.com/GYMRtJWcKHDJK3ZeW2bM5XoRKPSCsuttOniyR6DEmZOLu0RA-NUZyF0aN3XMjptLZQuptMCoITaQ7WmNnfAvdSIltVz04tze=rw-w120" alt="" />
-                        <h2 className='title maven-pro-uniquifier'>IMPROVE HEALTH</h2>
-                        <p>Lorem ipsum dolor sit amet, <br /> consectetur adipiscing elit. Ut elit <br /> tellus, luctus nec ullamcorper mattis, </p>
+                        <h2 className='title maven-pro-uniquifier'>Cải thiện sức khoẻ</h2>
+                        <p>Hỗ trợ nâng cao sức đề kháng và sức khỏe <br /> tổng thể cho mọi người.</p>
                     </div>
                 </div>
                 <div className="div-4 animate__animated animate__zoomIn">
@@ -56,13 +56,13 @@ const ContentHome = () => {
                 <div className="div-5-6 animate__animated animate__slideInRight" style={{ marginLeft: "10px" }}>
                     <div className="div-5" style={{ marginBottom: "100px" }}>
                         <img src="https://lh3.googleusercontent.com/_AHTi_znlJ40w1ThXuX1btwdHFSevyuZrpRHsactTC5iwhaKlEHTlZmvTNV2F44lz0Hi796-sau8YeaJNZmaqQH1w8y4DQaFDQ=rw-w120" alt="" />
-                        <h2 className='title maven-pro-uniquifier'> STRONG BONES </h2>
-                        <p>Lorem ipsum dolor sit amet, <br /> consectetur adipiscing elit. Ut elit <br /> tellus, luctus nec ullamcorper mattis, </p>
+                        <h2 className='title maven-pro-uniquifier'> Chắc khoẻ xương </h2>
+                        <p>Bổ sung dưỡng chất giúp xương chắc khỏe,<br /> phòng ngừa loãng xương</p>
                     </div>
                     <div className="div-6">
                         <img src="https://lh3.googleusercontent.com/N5AyJP94Z2M8NzUOGd14dbU5xUgWDtNVHBIEQp3Htkw89x5owLMH-zUUtDoxFLBi-LmBaRgR3JgtTqmgrbq_Yk3Y6wnqYaw=rw-w120" alt="" />
-                        <h2 className='title maven-pro-uniquifier'>GOOD MEMORY </h2>
-                        <p>Lorem ipsum dolor sit amet, <br /> consectetur adipiscing elit. Ut elit <br /> tellus, luctus nec ullamcorper mattis, </p>
+                        <h2 className='title maven-pro-uniquifier'>Tăng cường trí nhớ </h2>
+                        <p>Hỗ trợ phát triển và duy trì trí nhớ, tăng cường <br /> khả năng tập trung.</p>
                     </div>
                 </div>
             </div>
