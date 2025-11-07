@@ -4,7 +4,7 @@ import TypeVitamin from "./TypeVitamin";
 
 const AllHome = () => {
     return (
-        <div>
+        <div style={{marginTop: 75}}>
             <Intro></Intro>
             <ContentHome></ContentHome>
             <TypeVitamin></TypeVitamin>

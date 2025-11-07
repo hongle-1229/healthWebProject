@@ -53,7 +53,7 @@ const FirstAidPage = forwardRef<HTMLDivElement>((props, ref) => {
         marginBottom: 52,
         fontWeight: "bold"
       }}>
-        🚑 Sơ cứu nhanh - Tình huống khẩn cấp
+        🚑  Tình huống khẩn cấp
       </h1>
 
       <Collapse accordion bordered={false}>

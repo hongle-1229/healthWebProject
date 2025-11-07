@@ -14,12 +14,14 @@ const Banner: React.FC<BannerPoprs> = ({listRef}) => {
                         🌱💙 Thực phẩm chức năng<br />Bảo vệ sức khỏe mỗi ngày
                     </h1>
                     <p style={{ fontSize: "1.15rem", color: "#333", marginBottom: 26 }}>
-                        Tăng cường sức đề kháng, bổ sung dưỡng chất tự nhiên, giúp bạn <br /> và gia đình luôn khỏe mạnh, tràn đầy năng lượng.
+                        Cùng VietMed tìm hiểu cách bổ sung dưỡng chất an toàn, 
+  tăng cường sức đề kháng và hỗ trợ sức khỏe thể chất – tinh thần 
+  dựa trên cơ sở khoa học và lời khuyên cá nhân hóa từ AI.
                     </p>
                     <ul style={{ lineHeight:"25px",color: "#ff2418", fontSize: "1rem", marginBottom: 28, paddingLeft: 20 }}>
-                        <li>Chiết xuất thiên nhiên an toàn, lành mạnh</li>
-                        <li>Được kiểm nghiệm & chứng nhận chất lượng</li>
-                        <li>Ưu đãi hấp dẫn – Giao hàng toàn quốc</li>
+                        <li>Thông tin được tổng hợp từ nguồn y tế và dinh dưỡng đáng tin cậy.</li>
+                        <li>AI tư vấn lựa chọn thực phẩm chức năng phù hợp với độ tuổi, nhu cầu và thói quen sinh hoạt.</li>
+                        <li>Khuyến khích lối sống lành mạnh – sử dụng thực phẩm chức năng đúng cách, không lạm dụng.</li>
                     </ul>
                     <button onClick={handleScroll} className="tpcn-banner-btn">
                         Khám phá sản phẩm

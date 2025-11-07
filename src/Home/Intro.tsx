@@ -11,8 +11,8 @@ const Intro = () => {
             </div>
             <div className="bg-intro-2">
                 <div className="left animate__animated animate__fadeInLeft">
-                    <h2 style={{fontWeight:"bold"}} className="maven-pro-uniquifier">Get Your Minerals & <br /> Vitamins</h2>
-                    <p className="maven-pro-uniquifier" style={{fontSize: "16px"}}>Lorem ipsum dolor sit amet, consectetur adipiscing <br /> elit. Ut elit tellus, luctus nec ullamcorper mattis, <br /> pulvinar dapibus leo.</p>
+                    <h2 style={{fontWeight:"bold"}} className="maven-pro-uniquifier">Hiểu bệnh - chọn đúng <br /> sống khỏe</h2>
+                    <p className="maven-pro-uniquifier" style={{fontSize: "16px"}}> Một nền tảng – mọi giải pháp <br></br> cho sức khỏe: sơ cứu, tra cứu bệnh, thực phẩm <br /> chức năng.</p>
                     <button className="maven-pro-uniquifier" style={{color: "white", fontSize: "16px", fontWeight: "bold"}} onClick={()=> navigate("/products")}>Khám phá <ArrowRightOutlined style={{paddingLeft: "7px"}} /></button>
                 </div>
                 <div className="right animate__animated animate__zoomIn">

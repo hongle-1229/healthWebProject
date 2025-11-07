@@ -127,6 +127,7 @@ export default function Cart() {
         padding: 32,
         borderRadius: 8,
         boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+        marginTop: 120
       }}
     >
       <Title level={2}>🛒 Giỏ hàng của bạn</Title>

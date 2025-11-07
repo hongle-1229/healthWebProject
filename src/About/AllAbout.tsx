@@ -7,7 +7,7 @@ import OurTeam from "./OurTeam";
 const AllAbout = () => {
     const listRef = useRef<HTMLDivElement | null>(null);
     return (
-        <div>
+        <div style={{marginTop: 75}}>
             <IntroAbout listRef={listRef}></IntroAbout>
             <ContentAbout ref={listRef}></ContentAbout>
             <Counter></Counter>

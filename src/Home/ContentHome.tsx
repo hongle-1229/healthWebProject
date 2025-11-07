@@ -1,6 +1,7 @@
 import 'animate.css'
 import '../style/ContentHome.css'
 import { Card, Button, Row, Col, Rate } from "antd";
+import { useNavigate } from 'react-router-dom';
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -20,6 +21,7 @@ interface Products {
 const ContentHome = () => {
 
     const [products, setProducts] = useState<Products[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("http://localhost:5000/api/products/productThree")
@@ -69,17 +71,19 @@ const ContentHome = () => {
 
             {/* our product */}
             <div className='maven-pro-uniquifier' style={{ textAlign: "center", color: "rgb(65, 186, 227)" }}>
-                <h4>Sản phẩm của chúng tôi</h4>
+                <h2>Sản phẩm nổi bật</h2>
             </div>
             <div className='our-products' style={{ marginBottom: "100px" }}>
                 <Row justify="center">
                     {products.map((product) => (
                         <Col xs={24} sm={12} md={6} key={product.FunctionalFoodsID}>
                             <div className="product-card">
-                                {product.Discount > 0 && (
+                                {/* {product.Discount > 0 && (
                                     <div className="discount-badge">-{product.Discount}%</div>
-                                )}
-                                <Card
+                                )} */}
+                                <Card 
+                                style={{border:"1px"}}
+                                    onClick={()=>navigate(`/product_detail/${product.FunctionalFoodsID}`)}
                                     hoverable
                                     cover={<img alt={product.NameFood} src={product.ImageFood} className="product-image" />}
                                     className="product-container"
@@ -87,13 +91,13 @@ const ContentHome = () => {
                                     <h3 className="product-title">{product.NameFood}</h3>
                                     <p className="product-price">{product.PriceFoods.toLocaleString()} đ</p>
                                     <Rate disabled defaultValue={product.Rating} className="product-rating" />
-                                    <p className="product-sold">Đã bán {product.Sold}K</p>
+                                    {/* <p className="product-sold">Đã bán {product.Sold}K</p>
                                     <div className='button-container'>
                                         <ShoppingCartOutlined className='cart-icon' />
                                         <Button block className="buy-button" >
                                             Mua ngay
                                         </Button>
-                                    </div>
+                                    </div> */}
                                 </Card>
                             </div>
                         </Col>

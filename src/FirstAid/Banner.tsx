@@ -1,36 +1,46 @@
-  
-interface BannerProps{
+
+interface BannerProps {
     listRef: React.RefObject<HTMLDivElement | null>;
 }
 
-const Banner: React.FC<BannerProps> = ({listRef}) => {
-    const handleScroll = () =>{
-        listRef.current?.scrollIntoView({ behavior: "smooth"});
+const Banner: React.FC<BannerProps> = ({ listRef }) => {
+    const handleScroll = () => {
+        listRef.current?.scrollIntoView({ behavior: "smooth" });
     }
 
     return (
         <div className="first-aid-banner">
             <div className="banner-content">
-                <h1 style={{ marginBottom: "30px" }}>🩺 Sơ cứu nhanh - Bảo vệ sức khỏe</h1>
-                <p style={{ fontSize: "1.15rem", marginBottom: 12 }}>
-                    Trang thông tin tổng hợp các tình huống sơ cứu thường gặp trong cuộc sống hằng ngày.<br />
-                    Được biên soạn bởi chuyên gia y tế, giúp bạn dễ dàng tiếp cận, học hỏi và thực hành ngay khi cần thiết.
-                </p>
+                <h1 style={{ marginBottom: "30px" }}>🩺 Tư vấn cách xử lý khi gặp các tình huống khẩn cấp</h1>
+
                 <p style={{ fontSize: "1.05rem", marginBottom: 12 }}>
-                    <b style={{ fontSize: "20px" }}>Đừng để bất ngờ trước những tai nạn nhỏ hay sự cố bất ngờ! <br /> </b>
-                    <br /> Hãy chủ động trang bị kiến thức để bảo vệ bản thân, gia đình và cộng đồng. <br />
-                    Cung cấp các thông tin sơ cứu như:
+                    Nên làm gì khi gặp người đuối nước, bị bỏng hay điện giật? <br />
+                    Nên xử lý thế nào khi gặp người bị đột quỵ? <br />
+                    ...
                 </p>
-                <ul style={{ marginBottom: 16, paddingLeft: 20, color: "#333" }}>
-                    <li>Hướng dẫn chi tiết từng bước xử lý các tình huống khẩn cấp.</li>
-                    <li>Nhận biết dấu hiệu nguy hiểm, tránh sai lầm thường gặp.</li>
-                    <li>Video minh họa, hình ảnh trực quan, dễ hiểu.</li>
-                    <li>Kiểm tra kiến thức với bài trắc nghiệm tương tác.</li>
+
+                <p style={{ fontSize: "1.05rem", marginBottom: 12 }}>
+                    <b style={{ fontSize: "20px" }}>
+                        Hiểu đúng để hành động đúng. <br />
+                    </b>
+                    <br /> VietMed khuyến khích mỗi người chủ động trang bị kiến thức,
+                    học hỏi kỹ năng sơ cứu cơ bản từ các nguồn được công nhận,
+                    để bảo vệ bản thân và hỗ trợ người khác một cách an toàn. <br />
+                    Bạn có thể tham khảo tại đây:
+                </p>
+
+                <ul style={{ marginBottom: 16, paddingLeft: 20, color: "#333", fontSize:"17px" }}>
+                    <li>Tổng hợp các bước sơ cứu cơ bản theo khuyến nghị của tổ chức y tế uy tín.</li>
+                    <li>Phân tích những sai lầm thường gặp khi sơ cứu và cách phòng tránh.</li>
+                    <li>Tài liệu minh họa, video hướng dẫn từ nguồn chính thống dễ hiểu, dễ tra cứu.</li>
+                    <li>Bộ câu hỏi trắc nghiệm giúp kiểm tra và củng cố kiến thức sơ cứu của bạn.</li>
                 </ul>
+
                 <span style={{ color: "#ff4d4f", fontWeight: 600, display: "block", marginBottom: 20 }}>
-                    Bình tĩnh – Đúng cách – Kịp thời: Mỗi hành động của bạn có thể cứu sống một mạng người!
+                    Cẩn trọng – Bình tĩnh – Hành động có hiểu biết: Kiến thức đúng giúp bạn xử lý tốt trong tình huống khẩn cấp.
                 </span>
-                <button className="banner-btn" onClick={handleScroll}>Khám phá các tình huống sơ cứu</button>
+
+                <button className="banner-btn" onClick={handleScroll}>Tham khảo dưới đây</button>
 
             </div>
             <img
@@ -55,7 +65,7 @@ const Banner: React.FC<BannerProps> = ({listRef}) => {
                     }
                     .first-aid-banner h1 {
                         color: #1890ff;
-                        font-size: 2.2rem;
+                        font-size: 2.0rem;
                         font-weight: bold;
                         margin-bottom: 12px;
                     }
@@ -71,12 +81,12 @@ const Banner: React.FC<BannerProps> = ({listRef}) => {
                         border: none;
                         border-radius: 8px;
                         padding: 10px 28px;
-                        margin-top: 40px;
+                        margin-top: 20px;
                         font-size: 1rem;
                         font-weight: 600;
                         cursor: pointer;
                         transition: background 0.2s;
-                        width: 350px
+                        width: 270px
                     }
                     .banner-btn:hover {
                     background: #d9363e;

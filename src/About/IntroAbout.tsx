@@ -1,3 +1,4 @@
+
 interface BannerProps{
     listRef: React.RefObject<HTMLDivElement | null>;
 }
@@ -13,24 +14,24 @@ const Banner: React.FC<BannerProps> = ({listRef}) => {
             <div className="about-bg-content">
                 <h1>Về Chúng Tôi</h1>
                 <p>
-                    <b>Sứ mệnh:</b> Kết nối cộng đồng với chuyên gia y tế, lan tỏa tri thức sức khoẻ hiện đại.<br />
-                    <b>Tầm nhìn:</b> Trở thành địa chỉ tin cậy về sức khoẻ, đồng hành cùng bạn xây dựng lối sống lành mạnh.
+                    <b>Sứ mệnh:</b> Chia sẻ kiến thức và kỹ năng sơ cứu – chăm sóc sức khỏe đáng tin cậy, giúp cộng đồng chủ động bảo vệ bản thân và những người xung quanh.<br />
+                    <b>Tầm nhìn:</b> Trở thành nền tảng tra cứu và tư vấn sức khỏe phi lợi nhuận, mang lại thông tin dễ hiểu – chính xác – an toàn cho mọi người.
                 </p>
                 <div className="about-bg-values">
                     <div className="about-bg-value-card">
-                        <span>🎯</span>
-                        <b>Chính xác</b>
-                        <p>Thông tin được kiểm duyệt bởi chuyên gia.</p>
+                        <span>📚</span>
+                        <b>Khách quan</b>
+                        <p>Nội dung được tổng hợp từ các nguồn y tế đáng tin cậy trong và ngoài nước.</p>
                     </div>
                     <div className="about-bg-value-card">
-                        <span>🤝</span>
-                        <b>Tận tâm</b>
-                        <p>Luôn đồng hành cùng bạn.</p>
+                        <span>💬</span>
+                        <b>Tư vấn</b>
+                        <p>Cung cấp thông tin mang tính hướng dẫn, không thay thế cho chẩn đoán y khoa.</p>
                     </div>
                     <div className="about-bg-value-card">
-                        <span>💡</span>
-                        <b>Đổi mới</b>
-                        <p>Ứng dụng công nghệ hiện đại.</p>
+                        <span>🌱</span>
+                        <b>Cộng đồng</b>
+                        <p>Do sinh viên phát triển với tinh thần lan tỏa tri thức và vì sức khỏe cộng đồng.</p>
                     </div>
                 </div>
                 <button className="about-bg-btn" onClick={handleScroll}>
@@ -38,6 +39,7 @@ const Banner: React.FC<BannerProps> = ({listRef}) => {
                 </button>
             </div>
             <style>
+                @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
                 {`
                 .about-bg-banner {
                     position: relative;
@@ -46,29 +48,33 @@ const Banner: React.FC<BannerProps> = ({listRef}) => {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: url('src/assets/image/1435660933_Health.jpg') center/cover no-repeat;
+                    background: url('/src/assets/image/istockphoto-949812160-170667a.jpg') center/cover no-repeat;
                     overflow: hidden;
                     margin-bottom: 60px;
                 }
                 .about-bg-overlay {
                     position: absolute;
                     top: 0; left: 0; right: 0; bottom: 0;
-                    background: linear-gradient(120deg, rgba(141, 186, 228, 0.68) 0%, rgba(0,0,0,0.28) 100%);
+                    background: linear-gradient(30deg, rgba(0, 16, 28, 30%) 0%, rgba(184, 222, 255, 0.28) 30%);
                     backdrop-filter: blur(2px);
                     z-index: 1;
                 }
                 .about-bg-content {
                     position: relative;
                     z-index: 2;
-                    color: #fff;
-                    padding: 48px 36px;
+                    color: black;
+                    font-family: "Inter", sans-serif;
+                    font-optical-sizing: auto;
+                    font-weight: <weight>;
+                    font-style: normal;
+                    padding: 48px 30px;
                     text-align: center;
                     width: 100%;
                     max-width: 900px;
                 }
                 .about-bg-content h1 {
                     font-size: 2.8rem;
-                    font-weight: 800;
+                    font-weight: 700;
                     margin-bottom: 18px;
                     letter-spacing: 1px;
                     text-shadow: 0 2px 16px #0006;
@@ -77,7 +83,7 @@ const Banner: React.FC<BannerProps> = ({listRef}) => {
                     font-size: 1.2rem;
                     margin-bottom: 30px;
                     line-height: 1.6;
-                    color: white;
+                    color: black;
                     text-shadow: 0 1px 6px #100f0f33;
                 }
                 .about-bg-values {
@@ -88,12 +94,12 @@ const Banner: React.FC<BannerProps> = ({listRef}) => {
                     flex-wrap: wrap;
                 }
                 .about-bg-value-card {
-                    background: rgba(255,255,255,0.13);
+                    background: rgba(255,255,255,0.83);
                     border-radius: 16px;
                     padding: 16px 20px 10px 20px;
                     box-shadow: 0 2px 8px #0002;
                     min-width: 130px;
-                    max-width: 170px;
+                    max-width: 200px;
                     margin: 0 8px;
                     transition: background 0.18s;
                 }
@@ -107,20 +113,20 @@ const Banner: React.FC<BannerProps> = ({listRef}) => {
                 }
                 .about-bg-value-card b {
                     display: block;
-                    color: #fff;
-                    font-size: 1.08rem;
+                    color: black;
+                    font-size: 1.05rem;
                     margin-bottom: 4px;
-                    text-shadow: 0 1px 4px #0005;
+                    text-shadow: 0 1px 2px #0005;
                 }
                 .about-bg-value-card p {
                     font-size: 0.97rem;
-                    color: #f0f0f0;
+                    color: black;
                     margin: 0;
                     text-shadow: 0 1px 4px #0003;
                 }
                 .about-bg-btn {
                     background: linear-gradient(90deg, #19b4db 0%, #83d5e6 100%);
-                    color: #fff;
+                    color: #ffffffff;
                     border: none;
                     border-radius: 8px;
                     padding: 12px 36px;

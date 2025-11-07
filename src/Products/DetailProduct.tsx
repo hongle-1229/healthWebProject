@@ -38,15 +38,15 @@ const DetailProduct = () => {
         <div>
             <img src={product.ImageFood} alt={product.NameFood} style={{ width: "600px", borderRadius: "12px", objectFit: "cover" }} />
         </div>
-        <div style={{margin:"20px 60px"}}>
+        <div style={{margin:"90px 60px"}}>
             <h1 style={{width: "700px"}}>{product.NameFood}</h1>
             <p style={{fontSize: "23px"}}> <strong>Giá:</strong> {product.PriceFoods.toLocaleString()} đ</p>
-            <p style={{fontSize: "23px"}}> <strong>Đã bán:</strong> {product.Sold}K</p>
+            {/* <p style={{fontSize: "23px"}}> <strong>Đã bán:</strong> {product.Sold}K</p> */}
             <strong style={{fontSize: "23px"}}>Đánh giá: </strong> ({product.Rating}) 
             <Rate disabled defaultValue={product.Rating} className="product-rating" /> 
         </div>
       </div>
-      <div >
+      <div style={{marginTop:"50px"}}>
         <h1><strong>Công dụng:</strong></h1>
         <ReactMarkdown>{product.Benefit}</ReactMarkdown>
       </div>

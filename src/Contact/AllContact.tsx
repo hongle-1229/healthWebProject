@@ -33,7 +33,7 @@ const AllContact: React.FC = () => {
   };
 
   return (
-    <div >
+    <div style={{marginTop: 120}} >
       <div style={{marginLeft: "230px", marginTop: "50px"}}>
       <h1 style={{color:"rgb(23, 65, 79)"}}>Liên hệ với chúng tôi</h1>
       <p style={{color: "#353535"}}>

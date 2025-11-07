@@ -5,7 +5,7 @@ import FirstAidPage from "./FirstAidPage";
 const AllFirstAid = () => {
     const listRef = useRef<HTMLDivElement | null>(null);
     return (
-        <div>
+        <div style={{marginTop: 75}}>
             <Banner listRef={listRef}></Banner>
             <FirstAidPage ref={listRef}></FirstAidPage>
         </div>

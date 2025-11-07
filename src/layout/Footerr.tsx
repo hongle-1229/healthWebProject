@@ -1,6 +1,7 @@
 import React from 'react';
 import '../style/BaseCss.css';
 import vietmed from '../assets/image/vietmed.png';
+import { Link } from 'react-router-dom';
 // import { Footer } from "antd/es/layout/layout";
 import {
     FacebookFilled, 
@@ -44,14 +45,14 @@ const Footerr = () => {
         console.log(value);
       };
     return (
-        <div style={{display:"flex", backgroundColor:"#17414F", color: "white"}}>
+        <div style={{display:"flex", backgroundColor:"#4088a0ff", color: "white"}}>
             <div className="block-1 marginLeft-110px marginTop-30px">
-                <img src={vietmed} alt="" style={{height:"100px", objectFit: "cover", marginBottom: "20px"}}/>
+                <Link to="/home"><img src={vietmed} alt="" style={{height:"100px", objectFit: "cover", marginBottom: "20px"}}/></Link>
                 <p style={{color: "white"}}>
                 Sức khỏe của bạn là ưu tiên hàng đầu <br /> của chúng tôi. Chúng tôi luôn đồng hành cùng bạn, <br /> giúp bạn dễ dàng tra cứu thông tin sơ cứu, <br /> thực phẩm chức năng và kiến thức y tế cần thiết.
                 </p>
                 <div className="block-network-society" style={{display: "flex", gap:"20px", alignItems:"center"}}>
-                <FacebookFilled className='font-30px' style={{color:"blue", backgroundColor: "white", border: "none"}}/>
+                 <FacebookFilled className='font-30px' style={{color:"blue", backgroundColor: "white", border: "none"}}/>
                 <YoutubeFilled className='font-30px' style={{color:"red", backgroundColor: "white"}}/>
                 <InstagramFilled className='font-30px' style={{color:"#f8690a", backgroundColor:"white"}}/>
                 <TikTokFilled className='font-30px' style={{color: "black", backgroundColor:"white"}}/>

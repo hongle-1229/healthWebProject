@@ -134,7 +134,7 @@ router.get('/productThree', async (req, res) => {
     try {
         const pool = await poolPromise;
         const result = await pool.request()
-            .query("SELECT TOP 3 NameFood, ImageFood, PriceFoods, Rating, Sold, Discount FROM functional_food");
+            .query("SELECT TOP 3 FunctionalFoodsID, NameFood, ImageFood, PriceFoods, Rating, Sold, Discount, Benefit, Instructions, Alert FROM functional_food");
         res.json(result.recordset);
     } catch (err) {
         res.status(500).json({error:err.message});
@@ -148,8 +148,9 @@ router.get('/type', async (req, res) => {
         const pool = await poolPromise;
         const result = await pool.request()
             .query("SELECT TypeID, NameType FROM functional_food_type");
-        res.json(result.recordset);
+        res.status(200).json(result.recordset);
     } catch (err) {
+        console.log(err);
         res.status(500).send("Lỗi khi lấy danh mục sản phẩm!");
     }
 });
