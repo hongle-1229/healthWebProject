@@ -1,73 +1,117 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ThreeScene from "./ThreeScene";
-import SymptomsPanel from "./SymptomsPanel";
 import BodyPartInfo from "./BodyPartInfo";
+import SymptomsPanel from "./SymptomsPanel";
 import AnalysisResult from "./AnalysisResult";
+import { getModelFeatures, predictApi } from "../../train_model/modelApi";
 import "../style/Model.css";
 
-const Model: React.FC = () => {
-  const [selectedBodyPart, setSelectedBodyPart] = useState<string | null>(null);
-  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
-  const [analysisResult, setAnalysisResult] = useState<string[]>([]);
-  const [isAnalyzed, setIsAnalyzed] = useState(false); // 👉 Thêm
+// Kiểu dữ liệu trả về từ API cho features
+interface ModelData {
+  features: string[];
+  symptom_meta?: Record<string, { weight?: number; description?: string }>;
+  hotspot_regions?: string[];
+  hotspot_map?: Record<string, string[]>;
+}
 
-  const handleAddSymptom = (symptom: string) => {
-    if (!selectedSymptoms.includes(symptom)) {
-      setSelectedSymptoms([...selectedSymptoms, symptom]);
+// Kiểu dữ liệu phân tích (AnalysisItem) theo backend mới
+export interface AnalysisItem {
+  topic: string;
+  related: string;
+  match_score: number;
+  description: string;
+  advice: string[];
+  warning_level: "low" | "medium" | "high";
+}
+
+// Kiểu dữ liệu triệu chứng tập trung
+export interface SymptomFocusItem {
+  symptom: string;
+  weight: number;
+  note: string;
+}
+
+const Model: React.FC = () => {
+  const [selectedPart, setSelectedPart] = useState<string | null>(null);
+  const [symptoms, setSymptoms] = useState<string[]>([]);
+  const [modelData, setModelData] = useState<ModelData>({
+    features: [],
+    symptom_meta: {},
+    hotspot_regions: [],
+    hotspot_map: {},
+  });
+  const [analysis, setAnalysis] = useState<AnalysisItem[]>([]);
+  const [symptomFocus, setSymptomFocus] = useState<SymptomFocusItem[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  // Lấy dữ liệu feature từ backend
+  useEffect(() => {
+    getModelFeatures().then((data) => {
+      setModelData({
+        features: data.features || [],
+        symptom_meta: data.symptom_meta || {},
+        hotspot_regions: data.hotspot_regions || [],
+        hotspot_map: data.hotspot_map || {},
+      });
+    });
+  }, []);
+
+  // Xử lý phân tích
+  const handleAnalyze = async () => {
+    if (!symptoms.length) return alert("Chọn triệu chứng trước khi phân tích");
+    setLoading(true);
+    try {
+      const data = await predictApi(symptoms);
+      setAnalysis(data.analysis || []);
+      setSymptomFocus(data.symptom_focus || []);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleRemoveSymptom = (symptom: string) => {
-    setSelectedSymptoms(selectedSymptoms.filter((s) => s !== symptom));
-  };
-
-  const handleClearAll = () => {
-    setSelectedSymptoms([]);
-    setAnalysisResult([]);
-    setIsAnalyzed(false); // 👉 Reset trạng thái
-  };
-
-  const handleAnalyze = () => {
-    const recommendations = [
-      "🩺 Nghỉ ngơi và theo dõi tình trạng sức khỏe.",
-      "💧 Uống đủ nước và duy trì chế độ ăn lành mạnh.",
-      "⚠️ Nếu triệu chứng nặng hơn, hãy đến cơ sở y tế gần nhất.",
-      "🚶‍♂️ Tránh hoạt động gắng sức trong thời gian mệt mỏi.",
-      "🕒 Nghỉ ngơi hợp lý và giữ tinh thần thoải mái."
-    ];
-    setAnalysisResult(recommendations.slice(0, 3));
-    setIsAnalyzed(true); // 👉 Đánh dấu đã bấm phân tích
+  const handleClear = () => {
+    setSymptoms([]);
+    setSelectedPart(null);
+    setAnalysis([]);
+    setSymptomFocus([]);
   };
 
   return (
-    <div className="diagnosis-container">
-      {/* Cột trái */}
-      <div className="symptoms-panel">
+    <div className="diagnosis-layout">
+      {/* Left: Selected Symptoms */}
+      <aside className="left-col">
         <SymptomsPanel
-          symptoms={selectedSymptoms}
-          onRemove={handleRemoveSymptom}
-          onClear={handleClearAll}
+          symptoms={symptoms}
+          onRemove={(s) => setSymptoms(symptoms.filter((x) => x !== s))}
+          onClear={handleClear}
           onAnalyze={handleAnalyze}
         />
-      </div>
+      </aside>
 
-      {/* Cột giữa */}
-      <div className="model-view">
-        <h2 className="title">Hệ Thống Tư Vấn Sức Khỏe Qua Các Triệu Chứng</h2>
-        <p className="subtitle">
-          Chọn vùng cơ thể, chọn các triệu chứng và nhận khuyến nghị sức khỏe
-        </p>
-        <ThreeScene onSelectBodyPart={setSelectedBodyPart} />
-      </div>
+      {/* Center: 3D Model */}
+      <main className="center-col">
+        <ThreeScene onSelectBodyPart={setSelectedPart} />
+      </main>
 
-      {/* Cột phải */}
-      <div className="body-info">
+      {/* Right: Symptoms by Body Part + Analysis */}
+      <aside className="right-col">
         <BodyPartInfo
-          selectedBodyPart={selectedBodyPart}
-          onAddSymptom={handleAddSymptom}
+          bodyPart={selectedPart}
+          features={modelData.features} // bắt buộc
+          symptomMeta={modelData.symptom_meta} // optional
+          hotspotRegions={modelData.hotspot_regions} // optional
+          hotspotMap={modelData.hotspot_map} // optional
+          onSelectSymptom={(s) =>
+            setSymptoms((prev) => (prev.includes(s) ? prev : [...prev, s]))
+          }
         />
-        <AnalysisResult results={analysisResult} isAnalyzed={isAnalyzed} />
-      </div>
+
+        {loading && <p>Đang phân tích...</p>}
+
+        {analysis.length > 0 && (
+          <AnalysisResult analysis={analysis} symptom_focus={symptomFocus} />
+        )}
+      </aside>
     </div>
   );
 };

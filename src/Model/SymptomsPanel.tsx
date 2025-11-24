@@ -39,7 +39,7 @@ const SymptomsPanel: React.FC<Props> = ({
           onClick={onAnalyze}
           disabled={symptoms.length === 0}
         >
-          🔍 Phân Tích Triệu Chứng ({symptoms.length})
+          🔍 Tra cứu ({symptoms.length})
         </button>
         <button className="clear-btn" onClick={onClear}>
           🗑️ Xóa Tất Cả

@@ -1,50 +1,148 @@
-import React from "react";
+import React, { useMemo, useState, useEffect } from "react";
 
-interface Props {
-  selectedBodyPart: string | null;
-  onAddSymptom: (symptom: string) => void;
+interface SymptomMetaItem {
+  weight?: number;
+  description?: string;
 }
 
-const bodyPartData: Record<string, string[]> = {
-  Đầu: ["Đau đầu", "Chóng mặt", "Buồn nôn", "Sốt nhẹ"],
-  Ngực: ["Đau ngực", "Khó thở", "Tim đập nhanh", "Ho", "Tức ngực"],
-  Bụng: ["Đau bụng", "Khó tiêu", "Chán ăn", "Buồn nôn"],
-  Tay: ["Tê tay", "Đau cổ tay", "Yếu cơ"],
-  "Tay trái": ["Tê tay trái", "Đau cổ tay trái", "Yếu cơ tay trái"],
-  "Tay phải": ["Tê tay phải", "Đau cổ tay phải", "Yếu cơ tay phải"],
-  Chân: ["Đau đầu gối", "Phù chân", "Tê chân"],
-  "Chân trái": ["Đau chân trái", "Phù chân trái", "Tê chân trái"],
-  "Chân phải": ["Đau chân phải", "Phù chân phải", "Tê chân phải"],
-};
+interface BodyPartInfoProps {
+  bodyPart?: string | null; // Vùng cơ thể đang chọn
+  features: string[]; // Danh sách triệu chứng từ backend
+  symptomMeta?: Record<string, SymptomMetaItem>; // Thông tin weight/description
+  hotspotRegions?: string[]; // Các vùng cơ thể nổi bật
+  hotspotMap?: Record<string, string[]>; // Map vùng cơ thể -> danh sách triệu chứng
+  onSelectSymptom: (symptom: string) => void; // Callback khi chọn triệu chứng
+}
 
+const BodyPartInfo: React.FC<BodyPartInfoProps> = ({
+  bodyPart,
+  features,
+  symptomMeta = {},
+  hotspotRegions = [],
+  hotspotMap = {},
+  onSelectSymptom,
+}) => {
+  const [query, setQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(10);
 
-const BodyPartInfo: React.FC<Props> = ({ selectedBodyPart, onAddSymptom }) => {
-  if (!selectedBodyPart) {
-    return (
-      <div className="card body-info-card">
-        <h3>Thông Tin Vùng Cơ Thể</h3>
-        <p className="empty">Chọn một vùng trên cơ thể để xem triệu chứng</p>
-      </div>
-    );
-  }
+  // Sắp xếp danh sách symptom
+  const allKeys = useMemo(() => features.sort(), [features]);
 
-  const symptoms = bodyPartData[selectedBodyPart] || [];
+  // Format dữ liệu triệu chứng
+  const formatted = useMemo(
+    () =>
+      allKeys.map((k) => ({
+        key: k,
+        label: k.replace(/_/g, " "),
+        meta: {
+          weight: symptomMeta[k]?.weight || 0,
+          description: symptomMeta[k]?.description || "",
+        },
+      })),
+    [allKeys, symptomMeta]
+  );
+
+  // Lọc theo query và vùng cơ thể nếu có
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    let list = formatted;
+
+    // Lọc theo hotspotMap nếu bodyPart được chọn
+    if (bodyPart && hotspotMap[bodyPart]) {
+      list = list.filter((item) => hotspotMap[bodyPart].includes(item.key));
+    }
+
+    // Lọc theo từ khóa tìm kiếm
+    return list.filter((item) => item.label.toLowerCase().includes(q));
+  }, [formatted, query, bodyPart, hotspotMap]);
+
+  // Reset số lượng hiển thị khi query thay đổi
+  useEffect(() => {
+    setVisibleCount(10);
+  }, [query]);
 
   return (
-    <div className="card body-info-card">
-      <h3>Thông Tin Vùng Cơ Thể</h3>
-      <p className="part-name">{selectedBodyPart}</p>
-      <p className="description">
-        Các triệu chứng thường gặp tại vùng <b>{selectedBodyPart}</b>
-      </p>
-
-      <div className="symptom-options">
-        {symptoms.map((s, i) => (
-          <button key={i} className="symptom-option" onClick={() => onAddSymptom(s)}>
-            {s}
-          </button>
-        ))}
+    <div className="body-info-card card">
+      {/* Header */}
+      <div className="flex justify-between items-start mb-3">
+        <div>
+          <h3 className="part-name">
+            {bodyPart
+              ? `Các triệu chứng liên quan đến: ${bodyPart}`
+              : "Danh sách các triệu chứng"}
+          </h3>
+          <p className="description small">
+            {bodyPart
+              ? `Triệu chứng được lọc theo vùng: ${bodyPart}`
+              : hotspotRegions.length > 0
+              ? `Các vùng cơ thể nổi bật: ${hotspotRegions.join(", ")}`
+              : "Bạn có thể tìm kiếm triệu chứng hoặc chọn từ danh sách."}
+          </p>
+        </div>
+        <span className="small muted">{filtered.length} mục</span>
       </div>
+
+      {/* Search box */}
+      <input
+        className="symptom-search"
+        placeholder="Tìm triệu chứng..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      {/* Loading / Empty */}
+      {features.length === 0 ? (
+        <div className="text-center py-10 text-gray-500">
+          <p className="font-medium">Đang tải dữ liệu triệu chứng...</p>
+        </div>
+      ) : filtered.length === 0 ? (
+        <p className="text-center text-gray-500 py-10">Không tìm thấy triệu chứng phù hợp.</p>
+      ) : (
+        <ul className="symptom-options grid gap-3 max-h-[28rem] overflow-y-auto mt-3">
+          {filtered.slice(0, visibleCount).map((item) => (
+            <li
+              key={item.key}
+              className="symptom-option p-3 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onClick={() => onSelectSymptom(item.key)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelectSymptom(item.key);
+                }
+              }}
+            >
+              <div className="flex justify-between items-start">
+                <div>
+                  <div className="text-gray-800 font-medium">{item.label}</div>
+                  {item.meta.description && (
+                    <div className="symptom-desc small muted">{item.meta.description}</div>
+                  )}
+                </div>
+                {item.meta.weight !== undefined && (
+                  <span className="symptom-tag">
+                    {item.meta.weight >= 7
+                      ? "Cao"
+                      : item.meta.weight >= 4
+                      ? "Trung bình"
+                      : "Thấp"}
+                  </span>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Load more */}
+      {filtered.length > visibleCount && (
+        <div className="mt-3 flex justify-center">
+          <button className="btn" onClick={() => setVisibleCount((v) => v + 10)}>
+            Xem thêm
+          </button>
+        </div>
+      )}
     </div>
   );
 };

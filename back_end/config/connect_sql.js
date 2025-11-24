@@ -7,7 +7,7 @@ import { data } from "framer-motion/m";
 
 // Xác định đường dẫn tuyệt đối đến thư mục gốc dự án
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 // Debug: Kiểm tra giá trị biến môi trường
 console.log("🟢 DB_SERVER:", process.env.DB_SERVER);
