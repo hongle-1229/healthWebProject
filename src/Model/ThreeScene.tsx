@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader, GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { div } from "three/src/nodes/TSL.js";
 
 interface ThreeSceneProps {
   onSelectBodyPart: (part: string) => void;
@@ -217,20 +216,18 @@ const ThreeScene: React.FC<ThreeSceneProps> = ({ onSelectBodyPart }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div>
-       <h1 style={{marginTop:"100px", textAlign:"center", fontSize:"30px"}}>Hệ thống tư vấn sức khỏe dựa trên các triệu chứng</h1>
-      <div
+    <div
       ref={mountRef}
       className="model3d-container"
       style={{
-        // width: "100%",
-        // height: "500px",
+        width: "100%",
+        height: "500px",
         borderRadius: "20px",
         overflow: "hidden",
         background: "linear-gradient(120deg, #eef3ff, #f8faff)",
+        marginTop: "160px"
       }}
-    ></div>
-  </div>
+    />
   );
 };
 

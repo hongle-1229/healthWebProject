@@ -17,16 +17,13 @@ DATA_DIR_CANDIDATES = [
 
 DATA_DIR = next((d for d in DATA_DIR_CANDIDATES if os.path.isdir(d)), DATA_DIR_CANDIDATES[0])
 OUT_DIR = os.path.join(BASE, "models")
-if not os.path.isdir(OUT_DIR):
-    OUT_DIR = os.path.join("/mnt/data", "backend", "models")
-
 os.makedirs(OUT_DIR, exist_ok=True)
 
 print("Using DATA:", DATA_DIR)
 print("Output:", OUT_DIR)
 
 # Load CSVs
-file_symptom = os.path.join(DATA_DIR, "dataset.csv")
+file_symptom = os.path.join(DATA_DIR, "dataset_vietnamese.csv")
 file_desc = os.path.join(DATA_DIR, "symptom_Description.csv")
 file_prec = os.path.join(DATA_DIR, "symptom_precaution.csv")
 file_weight = os.path.join(DATA_DIR, "Symptom_severity.csv")

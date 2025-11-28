@@ -25,8 +25,13 @@ const BodyPartInfo: React.FC<BodyPartInfoProps> = ({
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(10);
 
-  // Sắp xếp danh sách symptom
-  const allKeys = useMemo(() => features.sort(), [features]);
+  // Chỉ lấy symptom thuộc vùng được chọn, nếu không chọn vùng thì hiển thị tất cả
+  const allKeys = useMemo(() => {
+    if (bodyPart && hotspotMap[bodyPart]) {
+      return hotspotMap[bodyPart].sort();
+    }
+    return [...features].sort();
+  }, [features, bodyPart, hotspotMap]);
 
   // Format dữ liệu triệu chứng
   const formatted = useMemo(
@@ -42,19 +47,11 @@ const BodyPartInfo: React.FC<BodyPartInfoProps> = ({
     [allKeys, symptomMeta]
   );
 
-  // Lọc theo query và vùng cơ thể nếu có
+  // Lọc theo query
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = formatted;
-
-    // Lọc theo hotspotMap nếu bodyPart được chọn
-    if (bodyPart && hotspotMap[bodyPart]) {
-      list = list.filter((item) => hotspotMap[bodyPart].includes(item.key));
-    }
-
-    // Lọc theo từ khóa tìm kiếm
-    return list.filter((item) => item.label.toLowerCase().includes(q));
-  }, [formatted, query, bodyPart, hotspotMap]);
+    return formatted.filter((item) => item.label.toLowerCase().includes(q));
+  }, [formatted, query]);
 
   // Reset số lượng hiển thị khi query thay đổi
   useEffect(() => {

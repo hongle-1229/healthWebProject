@@ -36,6 +36,7 @@ with open(PRECAUTIONS_JSON, "r", encoding="utf-8") as f:
 
 with open(SYMPTOM_WEIGHT_JSON, "r", encoding="utf-8") as f:
     symptom_weight = json.load(f)
+    print("FEATURE COUNT:", len(features))
 
 # ==========================
 # FASTAPI INIT
@@ -101,11 +102,11 @@ def predict(body: PredictIn):
         disease = classes[idx]
         p = float(probs[idx])
         if p >= 0.6:
-            warning = "high"
+            warning = "Cao"
         elif p >= 0.3:
-            warning = "medium"
+            warning = "Trung bình"
         else:
-            warning = "low"
+            warning = "Thấp"
 
         analysis.append({
             "topic": disease,  # Hoặc map sang nhóm: hô hấp, tiêu hóa,...

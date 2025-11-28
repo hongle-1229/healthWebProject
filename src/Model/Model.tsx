@@ -4,6 +4,7 @@ import BodyPartInfo from "./BodyPartInfo";
 import SymptomsPanel from "./SymptomsPanel";
 import AnalysisResult from "./AnalysisResult";
 import { getModelFeatures, predictApi } from "../../train_model/modelApi";
+import bodyPartSymptoms from "../../train_model/data/bodyPartSymptoms";
 import "../style/Model.css";
 
 // Kiểu dữ liệu trả về từ API cho features
@@ -90,7 +91,13 @@ const Model: React.FC = () => {
 
       {/* Center: 3D Model */}
       <main className="center-col">
-        <ThreeScene onSelectBodyPart={setSelectedPart} />
+        <ThreeScene
+          onSelectBodyPart={(part) => {
+            // CHỈ set selectedPart để BodyPartInfo hiển thị triệu chứng tương ứng
+            setSelectedPart(part);
+            // **KHÔNG** setSymptoms ở đây — tránh auto thêm vào left panel
+          }}
+        />
       </main>
 
       {/* Right: Symptoms by Body Part + Analysis */}
@@ -100,7 +107,7 @@ const Model: React.FC = () => {
           features={modelData.features} // bắt buộc
           symptomMeta={modelData.symptom_meta} // optional
           hotspotRegions={modelData.hotspot_regions} // optional
-          hotspotMap={modelData.hotspot_map} // optional
+          hotspotMap={bodyPartSymptoms} // dùng file data bodyPartSymptoms
           onSelectSymptom={(s) =>
             setSymptoms((prev) => (prev.includes(s) ? prev : [...prev, s]))
           }
@@ -108,10 +115,11 @@ const Model: React.FC = () => {
 
         {loading && <p>Đang phân tích...</p>}
 
-        {analysis.length > 0 && (
+      </aside>
+
+      {analysis.length > 0 && (
           <AnalysisResult analysis={analysis} symptom_focus={symptomFocus} />
         )}
-      </aside>
     </div>
   );
 };

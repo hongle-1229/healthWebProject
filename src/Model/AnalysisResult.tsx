@@ -6,13 +6,14 @@ interface AnalysisItem {
   match_score: number;
   description: string;
   advice: string[];
-  warning_level: "low" | "medium" | "high";
+  warning_level: "Thấp" | "Trung bình" | "Cao";
 }
 
 interface SymptomFocusItem {
   symptom: string;
   weight: number;
   note: string;
+
 }
 
 interface Props {
@@ -20,14 +21,28 @@ interface Props {
   symptom_focus: SymptomFocusItem[];
 }
 
+
 const AnalysisResult: React.FC<Props> = ({ analysis, symptom_focus }) => {
   return (
-    <div className="card analysis-result-card p-4 space-y-4">
-      <h3 className="text-lg font-semibold">Kết quả phân tích</h3>
+    <div className="result analysis-card ">
+      <h1 className="text-lg font-semibold" style={{textAlign:"center"}}>Kết quả phân tích và tư vấn ban đầu</h1>
+
+      {/* Các lưu ý cảnh báo */}
+      <div className="space-y-1">
+        <h4 className="font-semibold text-gray-800 mb-1" style={{backgroundColor:"#f77777ff", color:"white", padding:"5px", borderRadius:"8px"}}>
+          Lưu ý: Kết quả này chỉ mang tính tham khảo, không thay thế cho việc khám hoặc chẩn đoán y tế của bác sĩ.
+        </h4>
+        <h4 className="font-semibold text-gray-800 mb-1" style={{backgroundColor:"#f77777ff", color:"white", padding:"5px", borderRadius:"8px"}}>
+          Nếu triệu chứng nghiêm trọng, hãy liên hệ cơ sở y tế gần nhất.
+        </h4>
+        <h4 className="font-semibold text-gray-800 mb-1" style={{backgroundColor:"#f77777ff", color:"white", padding:"5px", borderRadius:"8px"}}>
+          Web dựa trên dữ liệu y tế tổng hợp, kết quả có thể không chính xác 100%.
+        </h4>
+      </div>
 
       {/* Phân tích nhóm vấn đề */}
       <div>
-        <h4 className="font-medium mb-2">Nhóm vấn đề liên quan</h4>
+        <h2 className="font-bold text-lg mb-2">Nhóm vấn đề liên quan</h2>
         <ul className="space-y-2">
           {analysis.map((a, i) => (
             <li key={i} className="p-2 border rounded">
@@ -54,7 +69,7 @@ const AnalysisResult: React.FC<Props> = ({ analysis, symptom_focus }) => {
 
       {/* Symptom focus */}
       <div>
-        <h4 className="font-medium mb-2">Triệu chứng nổi bật</h4>
+        <h2 className="font-bold text-lg mb-2">Triệu chứng nổi bật</h2>
         <ul className="space-y-2">
           {symptom_focus.map((s, i) => (
             <li key={i} className="p-2 border rounded">
