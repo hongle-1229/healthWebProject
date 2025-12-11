@@ -44,6 +44,16 @@ const FirstAidPage = forwardRef<HTMLDivElement>((props, ref) => {
 
   if (loading) return <Spin tip="Đang tải dữ liệu..." style={{ marginTop: 100 }} />;
 
+  const handleStartTest = () =>{
+    const user = localStorage.getItem("user");
+
+    if (!user){
+        alert("Vui lòng đăng nhập để tham gia kiểm tra!");
+        navigate("/login");
+        return;
+    }
+    navigate("/intro-test");
+  }
   return (
     <div ref={ref} className="container" style={{ margin: "20px" }}>
       <h1 style={{
@@ -178,7 +188,7 @@ const FirstAidPage = forwardRef<HTMLDivElement>((props, ref) => {
               type="primary"
               size="large"
               shape="round"
-              onClick={() => navigate("/intro-test")}
+              onClick={handleStartTest}
               style={{ padding: "0 32px", fontSize: 18 }}
             >
               Bắt đầu bài kiểm tra

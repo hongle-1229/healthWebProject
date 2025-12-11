@@ -2,10 +2,8 @@ import '../style/ProductHome.css';
 import 'animate.css';
 import { useState, useEffect, forwardRef } from 'react';
 import axios from 'axios';
-import { Card, Button, Row, Col, Rate } from "antd";
+import { Card, Row, Col, Rate } from "antd";
 import { useNavigate } from 'react-router-dom';
-import {message} from "antd"
-import TypedInputNumber from 'antd/es/input-number';
 
 interface Product {
   FunctionalFoodsID: number;

@@ -225,7 +225,7 @@ const ThreeScene: React.FC<ThreeSceneProps> = ({ onSelectBodyPart }) => {
         borderRadius: "20px",
         overflow: "hidden",
         background: "linear-gradient(120deg, #eef3ff, #f8faff)",
-        marginTop: "160px"
+        marginTop: "0px"
       }}
     />
   );

@@ -8,6 +8,7 @@ import newsRoutes from "./routes/newsRoutes.js"
 import firstAidRoutes from "./routes/firstAidRoutes.js";
 import quizRoutes from "./routes/quizRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import historyRoutes from "./routes/historyRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -27,6 +28,8 @@ app.use("/api/news", newsRoutes);
 app.use("/api/first_aid", firstAidRoutes);
 app.use("/api/quiz", quizRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/history", historyRoutes);
+console.log("historyRoutes loaded");
 
 app.listen(5000, ()=>{
     console.log("Server is running on port 5000");

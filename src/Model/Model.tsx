@@ -91,6 +91,8 @@ const Model: React.FC = () => {
 
       {/* Center: 3D Model */}
       <main className="center-col">
+        <h1 style={{marginTop:"100px", textAlign:"center", color:"#b21111ff", fontWeight:"500"}}>Hệ thống tư vấn sức khỏe thông qua việc lựa chọn các triệu chứng trên cơ thể</h1>
+        <p style={{textAlign:"center", color:"#363636ff"}}>(Mọi thông tin đều mang tính tham khảo, không thay thế chẩn đoán của bác sĩ)</p>
         <ThreeScene
           onSelectBodyPart={(part) => {
             // CHỈ set selectedPart để BodyPartInfo hiển thị triệu chứng tương ứng

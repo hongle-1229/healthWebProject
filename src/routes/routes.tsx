@@ -11,6 +11,7 @@ import DetailProduct from "../Products/DetailProduct";
 import Dashboard from "../Admin/Dashboard";
 import QuizDemo from "../TestCheck/QuizDemo";
 import IntroTest from "../TestCheck/IntroTest";
+//import HistoryLookUp from "../History/HistoryLookUp";
 // import { Navigate } from "react-router-dom";
 // import Dashboard from "../Home/Dashboard";
 
@@ -35,6 +36,8 @@ const ManageBlog = lazy(()=> import("../Admin/ManageBlog"));
 const ManageProduct = lazy(()=> import ("../Admin/ManageProduct"));
 const ManageFirstAid = lazy(()=> import ("../Admin/ManageFirstAid"));
 const Account = lazy(()=> import("../Admin/Account"));
+const HistoryTest = lazy(() => import("../History/HistoryTest"));
+const HistoryLookUp = lazy(()=> import("../History/HistoryLookUp"));
 
 export const routes: RouteObject[] = [
     // {
@@ -68,7 +71,9 @@ export const routes: RouteObject[] = [
             { path: "/blog", element: <AllBlog></AllBlog> },
             { path: "/contact", element: <AllContact></AllContact> },
             { path: "/cart", element: <Cart></Cart>},
-            { path: "/body", element: <Model></Model>}
+            { path: "/body", element: <Model></Model>},
+            { path: "/history-test", element: <HistoryTest></HistoryTest>},
+            { path: "/history-lookUp", element: <HistoryLookUp></HistoryLookUp>}
         ],
     }
     // element: isAuthenticated() ? <Dashboard /> : <Navigate to="/login" replace></Navigate>,

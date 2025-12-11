@@ -80,6 +80,22 @@ const QuizDemo = () => {
       .catch(err => console.error("Lỗi lấy câu hỏi: ", err));
   }, [testId]);
 
+  useEffect(() => {
+    if (!showResult) return;
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+    axios.post("http://localhost:5000/api/history/save_test_result", {
+      userID: user.id,
+      testID: testId,
+      score: score
+    })
+      .then(() => console.log("Saved success"))
+      .catch(err => console.error("Saved failed: ",  err.response?.data || err.message));
+      console.log("User:", user);
+console.log("UserID:", user.id);
+
+  }, [showResult, testId, score])
+
   if (questions.length === 0) return <p>Đang tải câu hỏi...</p>;
 
   const q = questions[currentIndex];
@@ -116,41 +132,73 @@ const QuizDemo = () => {
         <p style={{ fontSize: 24, margin: "24px 0" }}>
           Bạn đúng {score} / {questions.length} câu
         </p>
-        <div style={{display: "flex"}}>
+        <div style={{ display: "flex" }}>
           <button className="restart" onClick={restartQuiz} style={{ background: "#1976d2", color: "#fff", fontSize: 20, padding: "14px 32px", borderRadius: 10, border: "none", cursor: "pointer" }}>
-          Làm lại
-        </button>
-        <button onClick={()=> navigate("/first_aid")} className="back" style={{marginLeft: "40px", background: "#012040", color: "#fff", fontSize: 20, padding: "14px 32px", borderRadius: 10, border: "none", cursor: "pointer" }}>
-          Trở về
-        </button>
+            Làm lại
+          </button>
+          <button onClick={() => navigate("/intro-test")} className="back" style={{ marginLeft: "40px", background: "#012040", color: "#fff", fontSize: 20, padding: "14px 32px", borderRadius: 10, border: "none", cursor: "pointer" }}>
+            Trở về
+          </button>
         </div>
       </div>
     );
-  }
+  };
+
+
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(120deg, #e3f2fd 0%, #b2dfdb 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24 }}>
+    <div style={{ minHeight: "100vh", background: "linear-gradient(120deg, #e3f2fd 0%, #b2dfdb 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24, marginTop: 75 }}>
       <div style={{ height: 12, background: "#e0e0e0", borderRadius: 8, width: "100%", maxWidth: 600, marginBottom: 24, overflow: "hidden" }}>
         <div style={{ width: `${((currentIndex) / questions.length) * 100}%`, height: "100%", background: "linear-gradient(90deg, #42a5f5, #00e676)", borderRadius: 8, transition: "width 0.4s" }} />
       </div>
 
-      <div style={{ width: "100%", maxWidth: 600, background: "#fff", borderRadius: 18, boxShadow: "0 4px 24px #e0e0e0", padding: 32 }}>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 1000,
+          background: "#fff",
+          borderRadius: 18,
+          boxShadow: "0 4px 24px #e0e0e0",
+          padding: 32,
+          display: "flex",
+          gap: 32,               // Khoảng cách giữa ảnh và phần nội dung
+          alignItems: "flex-start" // Canh trên cùng
+        }}
+      >
         {q.ImageQuestion && (
-          <img src={q.ImageQuestion} alt="Hình minh họa" style={{ maxWidth: "100%", borderRadius: 12, marginBottom: 24 }} />
+          <div style={{ flexShrink: 0 }}>
+            <img
+              src={q.ImageQuestion}
+              alt="Hình minh họa"
+              style={{
+                width: 300,          // Chiều rộng cố định vừa phải
+                height: "auto",      // Giữ tỉ lệ ảnh
+                borderRadius: 12,
+                objectFit: "contain" // Giữ ảnh không bị bóp
+              }}
+            />
+          </div>
         )}
-        <h2 style={{ marginBottom: 24, color: "#1976d2" }}>{q.Question}</h2>
-        {options.map((opt, idx) => (
-          <OptionButton
-            key={idx}
-            text={opt}
-            idx={idx}
-            onSelect={handleSelect}
-            disabled={selected !== null}
-            selected={selected}
-            correctIndex={correctIndex}
-          />
-        ))}
+
+        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <h2 style={{ marginBottom: 24, color: "#1976d2" }}>{q.Question}</h2>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {options.map((opt, idx) => (
+              <OptionButton
+                key={idx}
+                text={opt}
+                idx={idx}
+                onSelect={handleSelect}
+                disabled={selected !== null}
+                selected={selected}
+                correctIndex={correctIndex}
+              />
+            ))}
+          </div>
+        </div>
       </div>
+
     </div>
   );
 };

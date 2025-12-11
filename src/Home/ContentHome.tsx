@@ -1,8 +1,7 @@
 import 'animate.css'
 import '../style/ContentHome.css'
-import { Card, Button, Row, Col, Rate } from "antd";
+import { Card, Row, Col, Rate } from "antd";
 import { useNavigate } from 'react-router-dom';
-import { ShoppingCartOutlined } from "@ant-design/icons";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
