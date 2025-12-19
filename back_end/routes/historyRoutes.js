@@ -52,15 +52,21 @@ router.post("/save_test_result", async (req, res) => {
     }
 
     try {
+        const vnTime = new Date(Date.now() + 7 * 60 * 60 * 1000)
+            .toISOString()
+            .slice(0, 19)     
+            .replace("T", " ");
+
         const pool = await poolPromise;
 
         await pool.request()
             .input("U", sql.Int, userID)
             .input("T", sql.Int, testID)
             .input("S", sql.Float, score)
+            .input("SubmitAt", sql.DateTime, vnTime)
             .query(`
                 INSERT INTO user_test_result (UserID, TestID, Score, SubmitAt)
-                VALUES (@U, @T, @S, GETDATE())
+                VALUES (@U, @T, @S, @SubmitAt)
             `);
 
         return res.json({ message: "Saved successfully" });
@@ -70,6 +76,7 @@ router.post("/save_test_result", async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 });
+
 
 /* =============================
    POST: Lưu lịch sử tra cứu
@@ -86,7 +93,7 @@ router.post("/save_lookup", async (req, res) => {
 
         const vnTime = new Date(Date.now() + 7 * 60 * 60 * 1000)
             .toISOString()
-            .slice(0, 19)  // YYYY-MM-DD HH:mm:ss
+            .slice(0, 19) 
             .replace("T", " ");
 
         const pool = await poolPromise;

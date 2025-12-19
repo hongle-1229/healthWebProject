@@ -44,7 +44,7 @@ export const routes: RouteObject[] = [
     //   path: "/login",
     //   element: <Login></Login>
     // },
-    { path: "/profile", element: <Profile></Profile>},
+    // { path: "/profile", element: <Profile></Profile>},
     { path: "/login", element: <Register></Register>},
     { 
         path: "/dashboard", element: <Dashboard></Dashboard>,
@@ -73,7 +73,8 @@ export const routes: RouteObject[] = [
             { path: "/cart", element: <Cart></Cart>},
             { path: "/body", element: <Model></Model>},
             { path: "/history-test", element: <HistoryTest></HistoryTest>},
-            { path: "/history-lookUp", element: <HistoryLookUp></HistoryLookUp>}
+            { path: "/history-lookUp", element: <HistoryLookUp></HistoryLookUp>},
+            { path: "/profile", element: <Profile></Profile>}
         ],
     }
     // element: isAuthenticated() ? <Dashboard /> : <Navigate to="/login" replace></Navigate>,

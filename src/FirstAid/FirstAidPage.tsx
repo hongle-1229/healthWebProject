@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { BulbOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
-// const images = item.ImageFirstAid.split(",");
 
 interface FirstAidCase {
   Title: string;
@@ -44,13 +43,13 @@ const FirstAidPage = forwardRef<HTMLDivElement>((props, ref) => {
 
   if (loading) return <Spin tip="Đang tải dữ liệu..." style={{ marginTop: 100 }} />;
 
-  const handleStartTest = () =>{
+  const handleStartTest = () => {
     const user = localStorage.getItem("user");
 
-    if (!user){
-        alert("Vui lòng đăng nhập để tham gia kiểm tra!");
-        navigate("/login");
-        return;
+    if (!user) {
+      alert("Vui lòng đăng nhập để tham gia kiểm tra!");
+      navigate("/login");
+      return;
     }
     navigate("/intro-test");
   }
@@ -142,7 +141,6 @@ const FirstAidPage = forwardRef<HTMLDivElement>((props, ref) => {
                   height="450"
                   src={getYouTubeEmbedUrl(item.VideoURL)}
                   title={item.Title}
-                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   style={{ borderRadius: 12, boxShadow: "0 4px 16px rgba(0,0,0,0.1)" }}
@@ -174,7 +172,6 @@ const FirstAidPage = forwardRef<HTMLDivElement>((props, ref) => {
             padding: 32,
             background: "linear-gradient(120deg, #fce4ec, #e3f2fd)",
           }}
-          bodyStyle={{ padding: 0 }}
         >
           <div style={{ textAlign: "center" }}>
             <BulbOutlined style={{ fontSize: 48, color: "#1976d2" }} />
@@ -200,22 +197,21 @@ const FirstAidPage = forwardRef<HTMLDivElement>((props, ref) => {
         {
           `
             .react-markdown h3 {
-  margin-top: 24px;
-  margin-bottom: 12px;
-  color: #333;
-}
-.react-markdown ul {
-  margin-left: 20px;
-  margin-bottom: 16px;
-}
-.react-markdown li {
-  margin-bottom: 6px;
-}
-.react-markdown p {
-  margin-bottom: 12px;
-  white-space: normal; /* không cần pre-line nữa */
-}
-
+              margin-top: 24px;
+              margin-bottom: 12px;
+              color: #333;
+            }
+            .react-markdown ul {
+              margin-left: 20px;
+              margin-bottom: 16px;
+            }
+            .react-markdown li {
+              margin-bottom: 6px;
+            }
+            .react-markdown p {
+              margin-bottom: 12px;
+              white-space: normal; /* không cần pre-line nữa */
+            }
           `
         }
       </style>

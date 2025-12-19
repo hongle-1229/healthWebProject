@@ -3,7 +3,7 @@ import "../style/BaseCss.css";
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/image/logo.png';
 import type { MenuProps } from 'antd';
-import { Menu, Button, Drawer } from 'antd';
+import { Menu, Button, Drawer, Avatar } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Footerr from './Footerr';
 import {
@@ -18,6 +18,7 @@ import useResponsive from '../useResponsive';
 const { Search } = Input;
 
 type MenuItem = Required<MenuProps>['items'][number];
+
 
 function getItem(
   label: React.ReactNode,
@@ -52,9 +53,26 @@ const Headerr = () => {
 
   // ===== CUSTOM POPUP LOGOUT =====
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
-
-  const user = JSON.parse(localStorage.getItem("user") || "null");
+  const [user, setUser] = useState<any>(null);
   const isLogin = !!user;
+
+  useEffect(() => {
+    const syncUser = () => {
+      const stored = localStorage.getItem("user");
+      setUser(stored ? JSON.parse(stored) : null);
+    };
+
+    // load lần đầu
+    syncUser();
+
+    // 🔥 lắng nghe khi profile update
+    window.addEventListener("userUpdated", syncUser);
+
+    return () => {
+      window.removeEventListener("userUpdated", syncUser);
+    };
+  }, []);
+
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -74,28 +92,30 @@ const Headerr = () => {
 
     // ===== MENU TÀI KHOẢN =====
     getItem(
-      <span style={{ color: "#9090D7" }}>
-        {isLogin ? user.username : "Tài khoản"}
+      <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <Avatar
+          size={28}
+          src={isLogin && user?.ImageUser ? user.ImageUser : undefined}
+          icon={<UserOutlined />}
+        />
+        <span style={{ color: "#9090D7", fontWeight: 500 }}>
+          {isLogin ? user.username : "Tài khoản"}
+        </span>
       </span>,
       "sub5",
-      <UserOutlined className="custom-icon" style={{ color: "white", fontSize: 18 }} />,
-      [
-        ...(isLogin
-          ? [
-            getItem(<Link to="/profile">Tài khoản của tôi</Link>, "17"),
-            getItem(
-              <span onClick={() => setShowLogoutPopup(true)}>Đăng xuất</span>,
-              "18"
-            ),
-            getItem(<Link to="/history-test">Lịch sử làm bài</Link>, "20"),
-            getItem(<Link to="/history-lookUp">Lịch sử tra cứu</Link>, "21"),
-          ]
-          : [
-            getItem(<Link to="/login">Đăng nhập</Link>, "18"),
-          ]
-        )
-      ]
-    ),
+      null,
+      isLogin
+        ? [
+          getItem(<Link to="/profile">Tài khoản của tôi</Link>, "17"),
+          getItem(<Link to="/history-test">Lịch sử làm bài</Link>, "20"),
+          getItem(<Link to="/history-lookUp">Lịch sử tra cứu</Link>, "21"),
+          getItem(
+            <span onClick={() => setShowLogoutPopup(true)}>Đăng xuất</span>,
+            "18"
+          ),
+        ]
+        : [getItem(<Link to="/login">Đăng nhập</Link>, "18")]
+    )
   ];
 
   const showDrawer = () => setOpen(true);
