@@ -1,55 +1,71 @@
+# Vietmed Health Support Web Application
 
-# React + TypeScript + Vite
+## 1. Giới thiệu
+Dự án là một website hỗ trợ y tế, cung cấp các chức năng:
+- Tra cứu sơ cứu nhanh
+- Tra cứu thực phẩm chức năng
+- Tra cứu triệu chứng sử dụng AI để phân tích
+- Tin tức & cộng đồng
+- Quản lý tài khoản người dùng
+- Lưu lịch sử tra cứu và làm bài kiểm tra
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dự án được xây dựng phục vụ mục đích đồ án tốt nghiệp.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 2. Công nghệ sử dụng
 
-## Expanding the ESLint configuration
+### Front-end
+- ReactJS
+- Ant Design
+- Three.js (mô phỏng 3D)
+- HTML, CSS, JavaScript
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Back-end
+- Node.js
+- ExpressJS
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Database
+- Microsoft SQL Server
+### AI
+- Thuật toán Naive Bayes
+- Python
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 3. Cấu trúc thư mục chính
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- back_end: chứa toàn bộ mã nguồn phía máy chủ của hệ thống VietMed, được xây dựng theo mô hình phân tách rõ ràng giữa cấu hình, dữ liệu và các tuyến xử lý API
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- src: chứa toàn bộ mã nguồn giao diện người dùng của hệ thống VietMed, được xây dựng bằng React và tổ chức theo từng chức năng
+
+- train_model: chứa mã nguồn và dữ liệu phục vụ huấn luyện mô hình AI cho chức năng phân tích triệu chứng và tư vấn bệnh lý
+
+
+
+---
+
+## 4. Hướng dẫn cài đặt & chạy dự án
+
+### 4.1. Database
+
+1. Mở SQL Server Management Studio
+2. Chạy lần lượt các file theo đúng thứ tự:
+
+-- 1. Tạo database
+create_database.sql
+
+-- 2. Tạo bảng và các ràng buộc
+create_table.sql
+
+-- 3. Dữ liệu mẫu để demo
+data.sql
+
+
+### 4.2. Back_end
+- Cấu hình kết nối DB: connect_sql.js
+- chỉnh sửa cấu hình .env
+- lệnh chạy back_end: cd back_end -> node index.js
+### 4.3. front_end
+- npm run dev
+### 4.4. training AI
+- cd train_model -> python trainmodel.py -> python main.py
