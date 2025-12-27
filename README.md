@@ -69,3 +69,8 @@ data.sql
 - npm run dev
 ### 4.4. training AI
 - cd train_model -> python trainmodel.py -> python main.py
+
+
+### Tài khoản đăng nhập demo
+username: Meomeo
+password: 12345678@

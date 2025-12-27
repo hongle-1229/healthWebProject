@@ -21,15 +21,15 @@ router.get("/test", async (req, res) => {
             .input("User", sql.Int, userID)
             .query(`
                 SELECT
-                    utr.ResultID,
-                    fac.Title as TestName,
+                    utr.TestOrder,
+                    fac.Title AS TestName,
                     utr.Score,
                     utr.SubmitAt
                 FROM user_test_result utr
                 JOIN first_aid_test fat ON utr.TestID = fat.TestID
-                JOIN first_aid_cases fac ON fat.FirstAidID = fac.FirstAidID 
+                JOIN first_aid_cases fac ON fat.FirstAidID = fac.FirstAidID
                 WHERE utr.UserID = @User
-                ORDER BY utr.SubmitAt DESC
+                ORDER BY utr.TestOrder DESC
             `);
 
         return res.json(result.recordset);
@@ -39,6 +39,7 @@ router.get("/test", async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 });
+
 
 
 // ===============================
@@ -54,7 +55,7 @@ router.post("/save_test_result", async (req, res) => {
     try {
         const vnTime = new Date(Date.now() + 7 * 60 * 60 * 1000)
             .toISOString()
-            .slice(0, 19)     
+            .slice(0, 19)
             .replace("T", " ");
 
         const pool = await poolPromise;
@@ -65,8 +66,15 @@ router.post("/save_test_result", async (req, res) => {
             .input("S", sql.Float, score)
             .input("SubmitAt", sql.DateTime, vnTime)
             .query(`
-                INSERT INTO user_test_result (UserID, TestID, Score, SubmitAt)
-                VALUES (@U, @T, @S, @SubmitAt)
+                INSERT INTO user_test_result (UserID, TestID, Score, SubmitAt, TestOrder)
+                SELECT
+                    @U,
+                    @T,
+                    @S,
+                    @SubmitAt,
+                    ISNULL(MAX(TestOrder), 0) + 1
+                FROM user_test_result
+                WHERE UserID = @U
             `);
 
         return res.json({ message: "Saved successfully" });
@@ -76,6 +84,7 @@ router.post("/save_test_result", async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 });
+
 
 
 /* =============================
@@ -93,7 +102,7 @@ router.post("/save_lookup", async (req, res) => {
 
         const vnTime = new Date(Date.now() + 7 * 60 * 60 * 1000)
             .toISOString()
-            .slice(0, 19) 
+            .slice(0, 19)
             .replace("T", " ");
 
         const pool = await poolPromise;
@@ -106,16 +115,26 @@ router.post("/save_lookup", async (req, res) => {
             .input("CreatedAt", sql.DateTime, vnTime)
             .query(`
                 INSERT INTO lookup_history
-                (UserID, SelectedSymptoms, Results, HighlightedSymptoms, CreatedAt)
-                VALUES (@UserID, @SelectedSymptoms, @Results, @HighlightedSymptoms, @CreatedAt)
+                (UserID, SelectedSymptoms, Results, HighlightedSymptoms, CreatedAt, LookupOrder)
+                SELECT
+                    @UserID,
+                    @SelectedSymptoms,
+                    @Results,
+                    @HighlightedSymptoms,
+                    @CreatedAt,
+                    ISNULL(MAX(LookupOrder), 0) + 1
+                FROM lookup_history
+                WHERE UserID = @UserID
             `);
 
         return res.json({ message: "Saved successfully" });
+
     } catch (err) {
         console.error("❌ Error save_lookup:", err);
         return res.status(500).json({ error: err.message });
     }
 });
+
 
 
 /* =============================
@@ -129,13 +148,19 @@ router.get("/get_lookup/:userId", async (req, res) => {
         const result = await pool.request()
             .input("UserID", sql.Int, req.params.userId)
             .query(`
-                SELECT LookupID, UserID, SelectedSymptoms, Results, HighlightedSymptoms, CreatedAt
+                SELECT
+                    LookupOrder,
+                    SelectedSymptoms,
+                    Results,
+                    HighlightedSymptoms,
+                    CreatedAt
                 FROM lookup_history
                 WHERE UserID = @UserID
-                ORDER BY CreatedAt DESC
+                ORDER BY LookupOrder DESC
             `);
 
         return res.json(result.recordset);
+
     } catch (err) {
         console.error("❌ Error get_lookup:", err);
         return res.status(500).json({ error: err.message });

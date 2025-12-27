@@ -17,7 +17,7 @@ interface HighlightedSymptom {
 }
 
 interface LookupHistory {
-    LookupID: number;
+    LookupOrder: number;
     SelectedSymptoms: string[];
     Results: DiseaseResult[];
     HighlightedSymptoms: HighlightedSymptom[];
@@ -48,8 +48,8 @@ const HistoryLookUp = () => {
 
                     Results.forEach((d: DiseaseResult, index: number) => {
                         flatRows.push({
-                            key: `${lookup.LookupID}-${index}`,
-                            LookupID: index === 0 ? lookup.LookupID : "",
+                            key: `${lookup.LookupOrder}-${index}`,
+                            LookupOrder: index === 0 ? lookup.LookupOrder : "",
 
                             Symptoms:
                                 index === 0
@@ -89,7 +89,7 @@ const HistoryLookUp = () => {
     }, [userID]);
 
     const columns = [
-        { title: "ID", dataIndex: "LookupID", width: 70 },
+        { title: "ID", dataIndex: "LookupOrder", width: 70 },
         { title: "Triệu chứng đã chọn", dataIndex: "Symptoms", width: 250 },
         { title: "Bệnh dự đoán", dataIndex: "Disease", width: 180 },
         { title: "Xác suất liên quan", dataIndex: "Probability", width: 140 },

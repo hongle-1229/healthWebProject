@@ -109,7 +109,7 @@ def predict(body: PredictIn):
             warning = "Thấp"
 
         analysis.append({
-            "topic": disease,  # Hoặc map sang nhóm: hô hấp, tiêu hóa,...
+            "topic": disease,  
             "related": disease,
             "match_score": round(p, 2),
             "description": disease_description.get(disease, ""),

@@ -3,7 +3,7 @@ import { Table, Card } from "antd";
 import axios from "axios";
 
 interface TestHistory {
-  ResultID: number;
+  TestOrder: number;
   TestName: string;
   Score: number;
   SubmitAt: string;
@@ -35,8 +35,8 @@ const HistoryTest = () => {
   const columns = [
     {
       title: "STT",
-      dataIndex: "ResultID",
-      key: "ResultID",
+      dataIndex: "TestOrder",
+      key: "TestOrder",
       width: 80,
       align: "center" as const,
     },
@@ -71,7 +71,7 @@ const HistoryTest = () => {
         dataSource={data}
         loading={loading}
         columns={columns}
-        rowKey={(record) => record.ResultID}
+        rowKey={(record) => record.TestOrder}
         pagination={{ pageSize: 5 }}
       />
     </Card>
